@@ -35,6 +35,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: android-base-${{ matrix.ubuntu }}
+          tags: mayurkumar0393/android-base-${{ matrix.ubuntu }}
           platforms: linux/amd64
-          file: 'mayurkumar0393/android-base-ubuntu-${{ matrix.ubuntu }}.dockerfile'
+          file: android-base-ubuntu-${{ matrix.ubuntu }}.dockerfile
