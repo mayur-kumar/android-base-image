@@ -13,7 +13,6 @@ RUN useradd -c "Runner user" -d /home/${USER} -u ${RUNNER_UID} -g ${GID} -m ${US
 
 RUN apt-get update -y \
     && apt-get install - tzdata \
-    && apt-get install -y ppa:git-core/ppa \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
     curl \
@@ -35,6 +34,4 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install PyGithub requests
-RUN echo "dash dash/sh boolean false" | debconfig-set-selections
-RUN dpkg-reconfigure dash
 USER runner
