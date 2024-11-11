@@ -12,8 +12,6 @@ RUN groupadd -g ${GID} ${GROUP}
 RUN useradd -c "Runner user" -d /home/${USER} -u ${RUNNER_UID} -g ${GID} -m ${USER}
 
 RUN apt-get update -y \
-    && apt-get install - tzdata \
-    && apt-get install -y ppa:git-core/ppa \
     && apt-get update -y \
     && apt-get install -y --no-install-recommends \
     curl \
