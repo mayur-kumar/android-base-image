@@ -12,7 +12,6 @@ jobs:
     name: Trigger Build and Push of Base Images
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         ubuntu:
           - '22.04'
