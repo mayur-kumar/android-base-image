@@ -28,7 +28,10 @@ RUN apt-get update -y \
     maven \
     nodejs \
     npm \
-    python3-pip
+    python3-pip \
+    openjdk-17-jdk
+ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+RUN npm install -g appcenter-cli@2.14.0
 
 RUN pip3 install PyGithub requests
 # RUN echo "dash dash/sh boolean false" | debconfig-set-selections
