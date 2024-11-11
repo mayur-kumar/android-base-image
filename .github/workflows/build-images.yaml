@@ -1,0 +1,42 @@
+name: Build Images
+on:
+  push:
+    branches:
+      - 'main'
+env:
+  PUSH_TO_REGISTRIES: true
+  DOCKER_VERSION: 24.0.7
+
+jobs:
+  build-images:
+    name: Trigger Build and Push of Base Images
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        ubuntu:
+          - '22.04'
+          - '24.10'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Qemu
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and Push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: android-base-${{ matrix.ubuntu }}
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          file: android-base-ubuntu-${{ matrix.ubuntu }}.dockerfile
