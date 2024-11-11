@@ -30,7 +30,7 @@ RUN apt-get update -y \
     maven \
     nodejs \
     npm \
-    python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install PyGithub requests
