@@ -32,6 +32,6 @@ RUN apt-get update -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install PyGithub requests
-RUN echo "dash dash/sh boolean false" | debconfig-set-selections
-RUN dpkg-reconfigure dash
+# RUN echo "dash dash/sh boolean false" | debconfig-set-selections
+# RUN dpkg-reconfigure dash
 USER runner
